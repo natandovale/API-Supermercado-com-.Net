@@ -8,26 +8,22 @@ using WebApplication2.Model;
 
 namespace WebApplication2.Repositories
 {
-    public class ProductRepository : IProductRepository
+    public class EFProductRepository : IProductRepository
     {
-        public List<Product> Products = new List<Product>();
-        public ProductRepository()
+        private readonly StoreDataContext _context;
+        public EFProductRepository(StoreDataContext context)
         {
+            _context = context;
         }
-
         public IEnumerable<Product> Get()
         {
-            return Products;
+            return _context.Products;
         }
 
         public void Create(Product product)
         {
-            Products.Add(product);
+            _context.Products.Add(product);
+            _context.SaveChanges();
         }
-
-        //public void Delete(int id)
-        //
-        //    _context.Products.Remove(product.Id);
-        //}
     }
 }

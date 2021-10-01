@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication2.Data;
+using WebApplication2.Interfaces;
 using WebApplication2.Repositories;
 
 namespace WebApplication2
@@ -31,7 +32,7 @@ namespace WebApplication2
 
             services.AddControllers();
             services.AddScoped<StoreDataContext, StoreDataContext>();
-            services.AddTransient<ProductRepository, ProductRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
 
         }
 

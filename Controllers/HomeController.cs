@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplication2.Interfaces;
 using WebApplication2.Model;
 using WebApplication2.Repositories;
 
@@ -12,8 +13,8 @@ namespace WebApplication2.Controllers
     [Route("[controller]")]
     public class HomeController : Controller
     {
-        private readonly ProductRepository _repository;
-        public HomeController(ProductRepository repository)
+        private readonly IProductRepository _repository;
+        public HomeController(IProductRepository repository)
         {
             _repository = repository;
         }
@@ -30,7 +31,6 @@ namespace WebApplication2.Controllers
             _repository.Create(product);
             return "Produto salvo com sucesso";
         }
-
     }
 }
 

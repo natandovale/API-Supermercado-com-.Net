@@ -10,8 +10,8 @@ namespace WebApplication2.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer(@"Server=localhost,1433;Database=prodcat;User ID=SA;Password=1q2w3e%&!");
-            optionsBuilder.UseInMemoryDatabase("Products");
+            optionsBuilder.UseSqlServer("Server = (localdb)\\mssqllocaldb; Database = SampleDB; Trusted_Connection = True");
+            //optionsBuilder.UseInMemoryDatabase("Products");
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

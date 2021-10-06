@@ -20,9 +20,15 @@ namespace WebApplication2.Controllers
         }
 
         [HttpGet("v1/products")]
-        public IEnumerable<Product> Get()
+        public IEnumerable<Product> GetAll()
         {
          return _repository.Get();
+        }
+
+        [HttpGet("v1/product")]
+        public IEnumerable<Product> Get(int id)
+        {
+            return _repository.Get(id);
         }
 
         [HttpPost("v1/products")]
@@ -30,6 +36,20 @@ namespace WebApplication2.Controllers
         {
             _repository.Create(product);
             return "Produto salvo com sucesso";
+        }
+
+        [HttpPut("v1/products")]
+        public string UpDate(Product product)
+        {
+            _repository.Update(product);
+            return "Produto Atualizado com sucesso";
+        }
+
+        [HttpDelete("v1/products")]
+        public string Delete(int id)
+        {
+            _repository.Delete(id);
+            return "Produto excluido com sucesso";
         }
     }
 }

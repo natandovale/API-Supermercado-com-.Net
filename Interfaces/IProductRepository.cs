@@ -9,6 +9,9 @@ namespace WebApplication2.Interfaces
     public interface IProductRepository
     {
         IEnumerable<Product> Get();
+        IEnumerable<Product> Get(int id);
         void Create(Product product);
+        public void Update(Product product);
+        public void Delete(int id);
     }
 }

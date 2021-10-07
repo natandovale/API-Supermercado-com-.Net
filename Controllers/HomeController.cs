@@ -26,7 +26,7 @@ namespace WebApplication2.Controllers
         }
 
         [HttpGet("v1/product")]
-        public IEnumerable<Product> Get(int id)
+        public Product Get(int id)
         {
             return _repository.Get(id);
         }

@@ -30,13 +30,11 @@ namespace WebApplication2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddScoped<DbContext, StoreDataContext>();
             //services.AddScoped<IProductRepository, EFProductRepository>();
+            services.AddTransient<ICartRepository, DapperCartRepository>();
             services.AddTransient<IProductRepository, DapperProductRepository>();
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,11 +45,12 @@ namespace WebApplication2
                 app.UseDeveloperExceptionPage();
             }
 
-            using (var serviceScope = app.ApplicationServices.CreateScope())
-            {
-                var context = serviceScope.ServiceProvider.GetService<StoreDataContext>();
-                //context.Database.EnsureCreated();
-            }
+            //using (var serviceScope = app.ApplicationServices.CreateScope())
+            //{
+            //    var context = serviceScope.ServiceProvider.GetService<DbContext>();
+            //    context.Database.EnsureDeleted();
+            //    context.Database.EnsureCreated();
+            //}
 
             app.UseRouting();
 

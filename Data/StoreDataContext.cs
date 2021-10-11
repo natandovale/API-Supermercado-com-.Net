@@ -7,6 +7,8 @@ namespace WebApplication2.Data
     public class StoreDataContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
+        public DbSet<Cart> Cart { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -17,6 +19,7 @@ namespace WebApplication2.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new ProductMap());
+            builder.ApplyConfiguration(new CartMap());
         }
     }
 }

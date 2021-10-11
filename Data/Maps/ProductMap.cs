@@ -12,9 +12,8 @@ namespace WebApplication2.Data.Maps
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.ToTable("Product");
+            builder.ToTable("products");
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Description).IsRequired().HasMaxLength(1024).HasColumnType("varchar(1024)");
             builder.Property(x => x.Price).IsRequired().HasColumnType("money");
             builder.Property(x => x.Title).IsRequired().HasMaxLength(120).HasColumnType("varchar(120)");
         }

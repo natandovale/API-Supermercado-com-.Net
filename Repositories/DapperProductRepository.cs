@@ -17,33 +17,32 @@ namespace WebApplication2.Repositories
         {
             using (var connection = new SqlConnection("Server = (localdb)\\mssqllocaldb; Database = SampleDB; Trusted_Connection = True"))
             {
-                //connection.Execute("INSERT INTO Product(title,description,price) VALUES (@title,@description,@price)",
-                //    new { price = product.Price, title = product.Title, description = product.Description });
-                connection.Insert(product);
-
+                connection.Execute("insert into Products(title,price) values (@title,@price)",
+                    new { price = product.Price, title = product.Title });
+                //connection.Insert(product);
             }
         }
 
         public IEnumerable<Product> Get()
         {
-            //string sql = "SELECT * FROM Product";
+            string sql = "select * from products";
 
             using (var connection = new SqlConnection("Server = (localdb)\\mssqllocaldb; Database = SampleDB; Trusted_Connection = True"))
             {
-                //var product = connection.Query<Product>(sql);
-                var products = connection.GetAll<Product>();
+                var products = connection.Query<Product>(sql);
+                //var products = connection.GetAll<Product>();
                 return products;
             }
         }
 
         public Product Get(int id)
         {
-            //string sql = "SELECT * FROM Product WHERE id = @id";
+            string sql = "select * from products where id = @id";
 
             using (var connection = new SqlConnection("Server = (localdb)\\mssqllocaldb; Database = SampleDB; Trusted_Connection = True"))
             {
-                //var product = connection.Query<Product>(sql, new { id  });
-                var product =connection.Get<Product>(id);
+                var product = connection.QueryFirst<Product>(sql, new { id });
+                //var product =connection.Get<Product>(id);
                 return product;
             }
         }

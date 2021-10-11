@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace WebApplication2.Model
 {
-    [Table("Product")]
+    [Table("Products")]
     public class Product
     {
         [Key]
         public int Id { get; set; }
         public string Title { get; set; }
-        public string Description { get; set; }
         public decimal Price { get; set; }
+        [Computed]
+        public Cart Cart { get; set; }
+        public int CartId { get; set; }
     }
 }

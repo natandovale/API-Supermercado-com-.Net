@@ -13,6 +13,12 @@ namespace WebApplication2.Model
         public int Id { get; set; }
         public string Nome { get; set; }
         [Computed]
-        public List<Product> Products { get; set; }
+        public List<Product> Products { get; set; } = new List<Product>();
+        [Computed]
+        public decimal SomaTotal { get 
+            {
+                return Products.Sum(x => x.Price);
+            } 
+        }
     }
 }

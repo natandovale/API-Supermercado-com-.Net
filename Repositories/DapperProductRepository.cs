@@ -37,12 +37,12 @@ namespace WebApplication2.Repositories
 
         public Product Get(int id)
         {
-            string sql = "select * from products where id = @id";
+            //string sql = "select * from products where id = @id";
 
             using (var connection = new SqlConnection("Server = (localdb)\\mssqllocaldb; Database = SampleDB; Trusted_Connection = True"))
             {
-                var product = connection.QueryFirst<Product>(sql, new { id });
-                //var product =connection.Get<Product>(id);
+                //var product = connection.QueryFirst<Product>(sql, new { id });
+                var product =connection.Get<Product>(id);
                 return product;
             }
         }

@@ -28,7 +28,9 @@ namespace WebApplication2.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            return Ok(_repository.Get(id));
+            var res = _repository.GetCartProduct(id);
+            
+            return Ok(res);
         }
 
         [HttpPost]

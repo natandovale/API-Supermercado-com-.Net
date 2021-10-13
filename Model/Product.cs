@@ -14,7 +14,8 @@ namespace WebApplication2.Model
         public string Title { get; set; }
         public decimal Price { get; set; }
         [Computed]
-        public Cart Cart { get; set; }
+        public string Cart { get; set; }
+        [Computed]  
         public int CartId { get; set; }
     }
 }

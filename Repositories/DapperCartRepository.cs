@@ -30,8 +30,8 @@ namespace WebApplication2.Repositories
                 connection.Query<Cart, Product, Cart>("select c.nome as Nome, c.id as Id, p.id as Id , p.title as Title, p.price as Price, p.cart_id as CartId from cart c inner join products p on p.cart_id = c.id where c.id = @id", (c, p) =>
                 {
                     cart ??= c;
-                    p.Cart = c.Nome;
-                    p.CartId = c.Id;
+                    p.Cart = c;
+                   // p.CartId = c.Id;
                     cart.Products.Add(p);
 
                     return c;
@@ -104,8 +104,8 @@ namespace WebApplication2.Repositories
                     {
                         cart = c;
                     }
-                    p.Cart = c.Nome;
-                    p.CartId = c.Id;
+                    p.Cart = c;
+                    //p.CartId = c.Id;
                     cart.Products.Add(p);
                     
                     return c;

@@ -42,7 +42,6 @@ C:\Repositorios\Estudos\BaltaWebAPI\WebApplication2\obj\Debug\net5.0\WebApplicat
 C:\Repositorios\Estudos\BaltaWebAPI\WebApplication2\obj\Debug\net5.0\WebApplication2.dll
 C:\Repositorios\Estudos\BaltaWebAPI\WebApplication2\obj\Debug\net5.0\ref\WebApplication2.dll
 C:\Repositorios\Estudos\BaltaWebAPI\WebApplication2\obj\Debug\net5.0\WebApplication2.pdb
-C:\Repositorios\Estudos\BaltaWebAPI\WebApplication2\bin\Debug\net5.0\appsettings.Development.json
 C:\Repositorios\Estudos\BaltaWebAPI\WebApplication2\bin\Debug\net5.0\appsettings.json
 C:\Repositorios\Estudos\BaltaWebAPI\WebApplication2\bin\Debug\net5.0\WebApplication2.exe
 C:\Repositorios\Estudos\BaltaWebAPI\WebApplication2\bin\Debug\net5.0\WebApplication2.deps.json

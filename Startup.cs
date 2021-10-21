@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication2.Data;
+using WebApplication2.Handlers;
 using WebApplication2.Interfaces;
 using WebApplication2.Repositories;
 
@@ -33,8 +34,9 @@ namespace WebApplication2
             services.AddControllers();
             services.AddScoped<DbContext, StoreDataContext>();
             //services.AddScoped<IProductRepository, EFProductRepository>();
-            services.AddTransient<ICartRepository, DapperCartRepository>();
-            services.AddTransient<IProductRepository, DapperProductRepository>();
+            services.AddTransient<ICartRepository, CartRepository>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IRequestProductHandler, RequestProductHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -10,7 +10,7 @@ using WebApplication2.Model;
 
 namespace WebApplication2.Repositories
 {
-    public class DapperProductRepository : IProductRepository   
+    public class ProductRepository : IProductRepository   
     {
 
         public void Create(Product product)
@@ -58,7 +58,7 @@ namespace WebApplication2.Repositories
         {
             using (var connection = new SqlConnection("Server = (localdb)\\mssqllocaldb; Database = SampleDB; Trusted_Connection = True"))
             {
-                //connection.Execute("UPDTAE Product SET title=@title,description=@description,price=@price WHERE id = @id", 
+                //connection.Execute("UPDATE Product SET title=@title,description=@description,price=@price WHERE id = @id", 
                 //    new { price = product.Price, title = product.Title, description = product.Description});
                 connection.Update(product);
             }

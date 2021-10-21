@@ -10,7 +10,7 @@ using WebApplication2.Model;
 
 namespace WebApplication2.Repositories
 {
-    public class DapperCartRepository : ICartRepository
+    public class CartRepository : ICartRepository
     {
         public void AddProductToCart(int idProduto, int idCart)
         {

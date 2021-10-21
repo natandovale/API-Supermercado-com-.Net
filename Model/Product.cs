@@ -15,7 +15,23 @@ namespace WebApplication2.Model
         public decimal Price { get; set; }
         [Computed]
         public Cart Cart { get; set; }
-        //Computed]  
-        //public int CartId { get; set; }
+
+        public Product(string title, decimal price)
+        {
+            Title = title;
+            Price = price;
+        }
+
+        public Product(int id, string title, decimal price)
+        {
+            Id = id;
+            Title = title;
+            Price = price;
+        }
+
+        public Product()
+        {
+        }
+   
     }
 }

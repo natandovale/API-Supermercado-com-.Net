@@ -6,7 +6,7 @@ using WebApplication2.Model;
 
 namespace WebApplication2.Interfaces
 {
-    public interface IProductRepository
+    public interface IProductCart
     {
         IEnumerable<Product> Get();
         //IEnumerable<Product> Get(int id);

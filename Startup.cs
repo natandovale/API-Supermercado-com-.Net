@@ -35,8 +35,11 @@ namespace WebApplication2
             services.AddScoped<DbContext, StoreDataContext>();
             //services.AddScoped<IProductRepository, EFProductRepository>();
             services.AddTransient<ICartRepository, CartRepository>();
-            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IProductCart, ProductRepository>();
             services.AddTransient<IRequestProductHandler, RequestProductHandler>();
+            services.AddTransient<IResponseProductHandler, ResponseProductHandler>();
+            services.AddTransient<IResponseCartHandler, ResponseCartHandler>();
+            services.AddTransient<IRequestCartHandler, RequestCartHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

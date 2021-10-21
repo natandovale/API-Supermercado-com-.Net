@@ -7,9 +7,12 @@ using WebApplication2.Model;
 
 namespace WebApplication2.Commands.Response
 {
-    public class ProductResponse
+    public class CartResponse
     {
-        public string Title { get; set; }
-        public decimal Price { get; set; }
+        [Key]
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public List<Product> Products { get; set; }
+        public decimal SomaTotal { get; set; }
     }
 }

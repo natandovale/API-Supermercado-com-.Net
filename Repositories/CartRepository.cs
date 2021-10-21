@@ -12,55 +12,6 @@ namespace WebApplication2.Repositories
 {
     public class CartRepository : ICartRepository
     {
-        public void AddProductToCart(int idProduto, int idCart)
-        {
-            using (var connection = new SqlConnection("Server = (localdb)\\mssqllocaldb; Database = SampleDB; Trusted_Connection = True"))
-            {
-                connection.Execute("update products set cart_id=@idCart where id=@product_id", new { idCart = idCart, product_id = idProduto });
-
-            }
-        }
-
-        public Cart GetCartProduct(int id)
-        {
-            Cart cart = null;
-
-            using (var connection = new SqlConnection("Server = (localdb)\\mssqllocaldb; Database = SampleDB; Trusted_Connection = True"))
-            {
-                connection.Query<Cart, Product, Cart>("select c.nome as Nome, c.id as Id, p.id as Id , p.title as Title, p.price as Price, p.cart_id as CartId from cart c inner join products p on p.cart_id = c.id where c.id = @id", (c, p) =>
-                {
-                    cart ??= c;
-                    p.Cart = c;
-                   // p.CartId = c.Id;
-                    cart.Products.Add(p);
-
-                    return c;
-
-                }, new { id }
-                    , splitOn: "Id");
-                return cart;
-            }
-        }
-
-        public void Create(Cart cart)
-        {
-            using (var connection = new SqlConnection("Server = (localdb)\\mssqllocaldb; Database = SampleDB; Trusted_Connection = True"))
-            {
-                //connection.Execute("insert into Product(title,price) values (@title,@price)",
-                //    new { price = product.Price, title = product.Title });
-                connection.Insert(cart);
-            }
-        }
-
-        public void Delete(int id)
-        {
-            using (var connection = new SqlConnection("Server = (localdb)\\mssqllocaldb; Database = SampleDB; Trusted_Connection = True"))
-            {
-                //connection.Execute(@"DELETE FROM Product WHERE id = @id", new { id });
-                connection.Delete(new Cart() { Id = id });
-            }
-        }
-
         public IEnumerable<Cart> Get()
         {
             using (var connection = new SqlConnection("Server = (localdb)\\mssqllocaldb; Database = SampleDB; Trusted_Connection = True"))
@@ -82,6 +33,79 @@ namespace WebApplication2.Repositories
             }
         }
 
+        public Cart GetCartProduct(int id)
+        {
+            Cart cart = null;
+
+            using (var connection = new SqlConnection("Server = (localdb)\\mssqllocaldb; Database = SampleDB; Trusted_Connection = True"))
+            {
+                connection.Query<Cart, Product, Cart>("select c.nome as Nome, c.id as Id, p.id as Id , p.title as Title, p.price as Price, p.cart_id as CartId from cart c inner join products p on p.cart_id = c.id where c.id = @id", (c, p) =>
+                {
+                    cart ??= c;
+                    //p.Cart = c;
+                    // p.CartId = c.Id;
+                    cart.Products.Add(p);
+
+                    return c;
+
+                }, new { id }
+                    , splitOn: "Id");
+                return cart;
+            }
+        }
+
+        public Cart GetPriceTotalProduct(int id)
+        {
+            Cart cart = null;
+
+            using (var connection = new SqlConnection("Server = (localdb)\\mssqllocaldb; Database = SampleDB; Trusted_Connection = True"))
+            {
+                connection.Query<Cart, Product, Cart>("select c.nome as Nome, c.id as Id, p.id as Id , p.title as Title, p.price as Price, p.cart_id as CartId from cart c inner join product p on p.cart_id = c.id where c.id = @id", (c, p) =>
+                {
+                    if (cart == null)
+                    {
+                        cart = c;
+                    }
+                    //p.Cart = c;
+                    //p.CartId = c.Id;
+                    cart.Products.Add(p);
+
+                    return c;
+
+                }, new { id }
+                    , splitOn: "Id");
+                return cart;
+            }
+        }
+
+        public void AddProductToCart(int idProduto, int idCart)
+        {
+            using (var connection = new SqlConnection("Server = (localdb)\\mssqllocaldb; Database = SampleDB; Trusted_Connection = True"))
+            {
+                connection.Execute("update products set cart_id=@idCart where id=@product_id", new { idCart = idCart, product_id = idProduto });
+
+            }
+        }
+
+        public void Create(Cart cart)
+        {
+            using (var connection = new SqlConnection("Server = (localdb)\\mssqllocaldb; Database = SampleDB; Trusted_Connection = True"))
+            {
+                //connection.Execute("insert into Product(title,price) values (@title,@price)",
+                //    new { price = product.Price, title = product.Title });
+                connection.Insert(cart);
+            }
+        }
+
+        public void Delete(int id)
+        {
+            using (var connection = new SqlConnection("Server = (localdb)\\mssqllocaldb; Database = SampleDB; Trusted_Connection = True"))
+            {
+                //connection.Execute(@"DELETE FROM Product WHERE id = @id", new { id });
+                connection.Delete(new Cart() { Id = id });
+            }
+        }
+        
         public void Update(Cart cart)
         {
             using (var connection = new SqlConnection("Server = (localdb)\\mssqllocaldb; Database = SampleDB; Trusted_Connection = True"))
@@ -92,28 +116,6 @@ namespace WebApplication2.Repositories
             }
         }
 
-        public Cart GetPriceTotalProduct(int id)
-        {
-            Cart cart = null;
-            
-            using (var connection = new SqlConnection("Server = (localdb)\\mssqllocaldb; Database = SampleDB; Trusted_Connection = True"))
-            {
-                connection.Query<Cart, Product, Cart>("select c.nome as Nome, c.id as Id, p.id as Id , p.title as Title, p.price as Price, p.cart_id as CartId from cart c inner join product p on p.cart_id = c.id where c.id = @id", (c, p) =>
-                {
-                    if(cart == null)
-                    {
-                        cart = c;
-                    }
-                    p.Cart = c;
-                    //p.CartId = c.Id;
-                    cart.Products.Add(p);
-                    
-                    return c;
-
-                }, new { id }
-                    , splitOn: "Id");
-                return cart;
-            }
-        }
+        
     }
 }

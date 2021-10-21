@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApplication2.Commands.Request;
 using WebApplication2.Commands.Response;
-using WebApplication2.Handlers;
 
 namespace WebApplication2.Interfaces
 {
-    public interface IRequestProductHandler : IRequest<ProductRequest>
+    public interface IResponseProductHandler : IResponse<ProductResponse>
     {
     }
 }

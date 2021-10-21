@@ -11,23 +11,18 @@ namespace WebApplication2.Handlers
 {
     public class RequestProductHandler : IRequestProductHandler
     {
-        private readonly IProductRepository _repository;
+        private readonly IProductCart _repository;
 
-        public RequestProductHandler(IProductRepository repository)
+        public RequestProductHandler(IProductCart repository)
         {
             _repository = repository;
         }
 
-        public ProductResponse HandlerCreate(ProductRequest command)
+        public void HandlerCreate(ProductRequest command)
         {
             var product = new Product(command.Title, command.Price );
             _repository.Create(product);
 
-            return new ProductResponse
-            {
-                Price = product.Price,
-                Title = product.Title,
-            };
         }
 
         public void HandlerDelete(int id)

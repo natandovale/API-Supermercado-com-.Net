@@ -13,8 +13,8 @@ namespace WebApplication2.Model
         public int Id { get; set; }
         public string Title { get; set; }
         public decimal Price { get; set; }
-        [Computed]
-        public Cart Cart { get; set; }
+        //[Computed]
+       // public Cart Cart { get; set; }
 
         public Product(string title, decimal price)
         {

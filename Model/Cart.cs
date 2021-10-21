@@ -20,5 +20,21 @@ namespace WebApplication2.Model
                 return Products.Sum(x => x.Price);
             } 
         }
+
+        public Cart(int id, string nome)
+        {
+            Id = id;
+            Nome = nome;
+        }
+
+        public Cart(string nome)
+        {
+            Nome = nome;
+        }
+
+        public Cart()
+        {
+
+        }
     }
 }

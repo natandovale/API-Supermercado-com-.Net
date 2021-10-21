@@ -10,7 +10,7 @@ using WebApplication2.Model;
 
 namespace WebApplication2.Repositories
 {
-    public class ProductRepository : IProductRepository   
+    public class ProductRepository : IProductCart   
     {
 
         public void Create(Product product)
@@ -46,7 +46,7 @@ namespace WebApplication2.Repositories
                 connection.Query<Product, Cart, Product>(sql, (p, c)=>
                 {
                     product ??= p;
-                    p.Cart = c;
+                    //p.Cart = c;
                     return p;
                 }, new { id });
                 //var product = connection.Get<Product>(id);

@@ -11,8 +11,8 @@ namespace WebApplication2.Handlers
 {
     public class ResponseProductHandler : IResponseProductHandler
     {
-        private readonly IProductCart _repository;
-        public ResponseProductHandler(IProductCart repository)
+        private readonly IProductRepository _repository;
+        public ResponseProductHandler(IProductRepository repository)
         {
             _repository = repository;
         }

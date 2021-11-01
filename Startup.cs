@@ -1,3 +1,4 @@
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,6 +12,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using WebApplication2.Data;
 using WebApplication2.Handlers;
@@ -35,11 +37,12 @@ namespace WebApplication2
             services.AddScoped<DbContext, StoreDataContext>();
             //services.AddScoped<IProductRepository, EFProductRepository>();
             services.AddTransient<ICartRepository, CartRepository>();
-            services.AddTransient<IProductCart, ProductRepository>();
-            services.AddTransient<IRequestProductHandler, RequestProductHandler>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            //services.AddTransient<IRequestProductHandler, RequestProductHandler>();
             services.AddTransient<IResponseProductHandler, ResponseProductHandler>();
             services.AddTransient<IResponseCartHandler, ResponseCartHandler>();
             services.AddTransient<IRequestCartHandler, RequestCartHandler>();
+            services.AddMediatR(Assembly.GetExecutingAssembly());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -10,7 +10,7 @@ using WebApplication2.Model;
 
 namespace WebApplication2.Repositories
 {
-    public class ProductRepository : IProductCart   
+    public class ProductRepository : IProductRepository
     {
 
         public void Create(Product product)

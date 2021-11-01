@@ -8,7 +8,7 @@ using WebApplication2.Handlers;
 
 namespace WebApplication2.Interfaces
 {
-    public interface IRequestProductHandler : IRequest<ProductRequest>
+    public interface IRequestProductHandler : IRequest<CreateProductResponse>
     {
     }
 }

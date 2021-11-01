@@ -22,7 +22,7 @@ namespace WebApplication2.Handlers
             _repository.AddProductToCart(idProduto, idCart);
         }
 
-        public void HandlerCreate(CartRequest command)
+        public void HandlerCreate(CreateCartRequest command)
         {
             var cart = new Cart(command.Nome);
             _repository.Create(cart);
@@ -33,7 +33,7 @@ namespace WebApplication2.Handlers
             _repository.Delete(id);
         }
 
-        public void HandlerUpdate(CartRequest command)
+        public void HandlerUpdate(CreateCartRequest command)
         {
             var cart = new Cart(command.Id, command.Nome);
             _repository.Update(cart); 

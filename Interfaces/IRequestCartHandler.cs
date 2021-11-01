@@ -7,7 +7,7 @@ using WebApplication2.DTOs;
 
 namespace WebApplication2.Interfaces
 {
-    public interface IRequestCartHandler : IRequest<CartRequest>
+    public interface IRequestCartHandler : IRequest<CreateCartRequest>
     {
         void AssociateProduct(int a , int b);
 

@@ -39,7 +39,7 @@ namespace WebApplication2.Repositories
 
             using (var connection = new SqlConnection("Server = (localdb)\\mssqllocaldb; Database = SampleDB; Trusted_Connection = True"))
             {
-                connection.Query<Cart, Product, Cart>("select c.nome as Nome, c.id as Id, p.id as Id , p.title as Title, p.price as Price, p.cart_id as CartId from cart c inner join products p on p.cart_id = c.id where c.id = @id", (c, p) =>
+                connection.Query<Cart, Product, Cart>("select c.nome as Nome, c.id as Id, p.id as Id , p.title as Title, p.price as Price, p.cartId as CartId from cart c inner join products p on p.cartId = c.id where c.id = @id", (c, p) =>
                 {
                     cart ??= c;
                     //p.Cart = c;
@@ -101,8 +101,8 @@ namespace WebApplication2.Repositories
         {
             using (var connection = new SqlConnection("Server = (localdb)\\mssqllocaldb; Database = SampleDB; Trusted_Connection = True"))
             {
-                //connection.Execute(@"DELETE FROM Product WHERE id = @id", new { id });
-                connection.Delete(new Cart() { Id = id });
+                connection.Execute(@"DELETE FROM cart WHERE id = @id", new { id });
+                //connection.Delete(new Cart() { Id = id });
             }
         }
         

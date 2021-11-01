@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication2.Commands.Request;
+using WebApplication2.Commands.Response;
 using WebApplication2.DTOs;
 using WebApplication2.Interfaces;
 using WebApplication2.Model;
@@ -14,25 +16,27 @@ namespace WebApplication2.Controllers
     [Route("[controller]")]
     public class CartController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult GetAll([FromServices] IResponseCartHandler handler)
-        {
-            var response = handler.HandlerGetAll();
-            return Ok(response);
-        }
 
         [HttpGet("{id}")]
-        public IActionResult Get([FromServices] IResponseCartHandler handler, int id)
+        public IActionResult Get([FromServices] IMediator mediator, [FromBody] GetCartByIdResponse command)
         {
-            var response = handler.HandlerGetById(id);
+            var response = mediator.Send(command);
+            
+            return Ok(response);
+        }
+        [HttpGet("All")]
+        public async Task<IActionResult> GetAll([FromServices] IMediator mediator)
+        {
+            
+            var response = await mediator.Send(new GetAllCartResponse());
             
             return Ok(response);
         }
 
         [HttpPost]
-        public IActionResult Post([FromServices] IRequestCartHandler handler,[FromBody] CartRequest command)
+        public IActionResult Create([FromServices] IMediator mediator,[FromBody] CreateCartRequest command)
         {
-            handler.HandlerCreate(command);
+            mediator.Send(command);
             return StatusCode(201);
         }
 
@@ -44,16 +48,16 @@ namespace WebApplication2.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpDate([FromServices] IRequestCartHandler handler, [FromBody] CartRequest command)
+        public IActionResult UpDate([FromServices] IMediator mediator, [FromBody] UpdateCartRequest command)
         {
-            handler.HandlerUpdate(command);
+            mediator.Send(command);
             return StatusCode(200);
         }
 
         [HttpDelete]
-        public IActionResult Delete([FromServices] IRequestCartHandler handler, int id)
+        public IActionResult Delete([FromServices] IMediator mediator, [FromBody] DeleteCartRequest command)
         {
-            handler.HandlerDelete(id);
+            mediator.Send(command);
             return StatusCode(200);
 
         }
